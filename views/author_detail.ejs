@@ -31,18 +31,23 @@
             </ul>
             </div>
             <div class="col-sm-10">
-                <h1><%= title %></h1>
-
-                <% if (author_list.length) { %>
-                    <ul>
-                        <% author_list.forEach(function(author) { %>
-                            <li><a href="<%- author.url %>"><%- author.name %></a> (<%- author.date_of_birth_formatted %>) - (<%- author.date_of_death_formatted %>)</li>
-                            <p>Lived for: <%- author.lifespan %></p>
-                        <% }) %> 
-                    </ul>
-                <% } else { %>
-                    <p>There are no authors</p>
-               <% } %>
+                <h1>Author: <%- author.name %></h1>
+                <p><%- author.date_of_birth_formatted %> - <%- author.date_of_death_formatted %></p>
+                <p>Lived for: <%- author.lifespan %></p>
+                <div style="margin-left:20px;margin-top:20px">
+                <h4>Books</h4>
+                <% if (author_books.length) { %>
+                    <dl>
+                        <% author_books.forEach(function(book) { %>
+                            <dt><a href="book.url"> <%- book.title %></a></dt>
+                            <dd><%- book.summary %></dd>
+                       <% }) %>
+                    
+                    </dl>
+              <%  } else { %>
+                    <p>This author has no books.</p>
+                    <% } %>
+            </div>
             </div>
         </div>
     </div>
