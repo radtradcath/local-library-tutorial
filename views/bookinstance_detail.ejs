@@ -49,6 +49,8 @@
                         <p><strong>Due back:</strong> <%- bookinstance.due_back_formatted %></p>
                    <% } %>
                 </p>
+                <hr>
+                <p><a href="<%- bookinstance.url + '/delete' %>">Delete Instance</a></p>
             </div>
         </div>
     </div>

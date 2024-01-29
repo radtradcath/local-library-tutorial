@@ -32,29 +32,17 @@
             </div>
             <div class="col-sm-10">
                 <h1><%= title %></h1>
-                <% if (bookinstance_list.length) { %>
-                    <ul>
-                        <% bookinstance_list.forEach(function(val) { %>
-                            <li>
-                                <a href="<%- val.url %>">Name : <%- val.imprint %></a>
-                                <% if (val.status=='Available') { %>
-                                    <span class="text-success"><%- val.status %></span>  
-                                <% } else if (val.status=='Maintenace') { %>
-                                    <span class="text-danger"><%- val.status %></span>
-                                <% } else { %>
-                                    <span class="text-warning"><%- val.status %></span>
-                                <% } %>
-                                    <% if (val.status != 'Available') { %>
-                                        <span>(Due: <%- val.due_back_formatted %>)</span>
-                                    <% } %>
-                            </li>
-
-                        <% }) %>
-                    </ul>
-                <% } else { %>
-                    <p>There are no book copies in the library.</p>
-                <% } %>
+                <h2><%- bookInstance.book.title %></h2>
+                <p><%- bookInstance.imprint %></p>
+                <p><%- bookInstance.status %></p>
+                <p>Do you really want to delete this instance?</p>
+                <form action="" method="POST">
+                    <input type="hidden" name="instanceid" value="<%- bookInstance._id %>" id="instanceid" class="form-control">
+                    <button class="btn btn-primary" type="submit">Delete</button>
+                </form>
             </div>
+            
+                
         </div>
     </div>
 </body>
