@@ -31,27 +31,28 @@
             </ul>
             </div>
             <div class="col-sm-10">
-                <h1>Author: <%- author.name %></h1>
-                <p><%- author.date_of_birth_formatted %> - <%- author.date_of_death_formatted %></p>
-                <p>Lived for: <%- author.lifespan %></p>
-                <div style="margin-left:20px;margin-top:20px">
-                <h4>Books</h4>
+                <h1><%- title %> : <%- author.name %> </h1>
+                <p><%- author.lifespan %></p>
                 <% if (author_books.length) { %>
+                    <p><strong>Delete the following books before attempting to delete this author.</strong></p>
+                    <div style="margin-left:20px;margin-top:20px">
+                    <h4>Books</h4>
                     <dl>
-                        <% author_books.forEach(function(book) { %>
-                            <dt><a href="book.url"> <%- book.title %></a></dt>
+                        <% author_books.forEach(book => { %>
+                            <dt><a href="<%- book.url %>"><%- book.title %></a></dt>
                             <dd><%- book.summary %></dd>
                        <% }) %>
-                    
                     </dl>
-              <%  } else { %>
-                    <p>This author has no books.</p>
+                    </div>
+                <% } else { %>
+                    <p>Do you really want to delete this author?</p>
+                    <form action="" method="POST">
+                        <div class="form-group">
+                            <input type="hidden" name="authorid" value="<%- author._id %>" id="authorid" class="form-control">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Delete</button>
+                    </form>
                     <% } %>
-            </div>
-            <hr>
-            <p>
-                <a href="<%- author.url + '/delete' %>">Delete Author</a>
-            </p>
             </div>
         </div>
     </div>
