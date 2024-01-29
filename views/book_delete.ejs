@@ -31,39 +31,24 @@
             </ul>
             </div>
             <div class="col-sm-10">
-                <h1>Title: <%- book.title %></h1>
-                <p><strong>Author: </strong><a href="<%- book.author.url %>"> <%- book.author.name %></a></p>
-                <p><strong>Summary: </strong> <%- book.summary %></p>
-                <p><strong>ISBN: </strong> <%- book.isbn %></p>
-                <p><strong>Genre: </strong>
-                    <% book.genre.forEach(function(val,index) { %>
-                        <a href="<%- val.url %>"><%- val.name %></a>
-                        <% if (index < book.genre.length -1) { %>
-                            <span>, ,</span>
-                        <% } %>
+                <h1><%- title %> : <%- book.title %></h1>
+                <p>Author: <%- book.author.family_name %>, <%- book.author.first_name %></p>
+                <p>Genres:</p>
+                <ul>
+                    <% book.genre.forEach(val => { %>
+                        <li><%- val.name %></li>
+                </ul>
+                        <h4>Summary:</h4>
+                        <p><%- book.summary %></p>
                     <% }) %>
-                </p>
-                <div style="margin-left:20px;margin-top:20px">
-                <h4>Copies</h4>
-                <% book_instances.forEach(function(val) { %>
-                    <hr>
-                    <% if (val.status=='Available') { %>
-                        <p class="text-success"><%- val.status %></p>
-                    <% } else if (val.status=='Maintenance') { %>
-                        <p class="text-danger"><%- val.status %></p>
-                    <% } else { %>
-                    <p class="text-warning"><%- val.status %></p>
-                    <% } %>
-                    <p><strong>Imprint: </strong> <%- val.imprint %></p>
-                    <% if (val.status != 'Available') { %>
-                        <p><strong>Due back: </strong> <%-val.due_back %></p>
-                   <%  } %>
-                   <p><strong>Id: </strong> <a href="<%- val.url %>"><%- val._id %></a></p>
-               <% }) %>
-                </div>
-                <hr>
-                <p><a href="<%- book.url + '/delete' %>">Delete Book</a></p>
-                <p><a href="<%- book.url + '/update' %>">Update Book</a></p>
+                    
+                
+                <br>
+                <p>Do you really want to delete this book?</p>
+                <form action="" method="POST">
+                    <input type="hidden" name="bookid" value="<%- book._id %>" id="bookid" class="form-control">
+                    <button class="btn btn-primary" type="submit">Delete</button>
+                </form>
             </div>
         </div>
     </div>
