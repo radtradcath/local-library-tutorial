@@ -31,23 +31,27 @@
             </ul>
             </div>
             <div class="col-sm-10">
-                <h1>Genre: <%- genre.name %></h1>
-                <div style="margin-left:20px; margin-top:20px">
-                    <h4>Books</h4>
-                    <% if (genre_books.length) { %>
+                <h1><%- title %> : <%- genre.name %></h1>
+                <% if (allGenreBooks.length) { %>
+                    <p><strong>Delete the following books pefore attempting to delete this genre.</strong></p>
+                    <div style="margin-left:20px;margin-top:20px">
+                        <h4>Books</h4>
                         <dl>
-                           <% genre_books.forEach(function(book) { %>
-                                <dt>
-                                    <a href="<%- book.url %>"><%- book.title %></a>
-                                </dt>
+                            <% allGenreBooks.forEach(book => { %>
+                                <dt><a href="<%- book.url %>"><%- book.title %></a></dt>
                                 <dd><%- book.summary %></dd>
-                           <% }) %>
+                            <% }) %>
                         </dl>
-                    <% } else { %>
-                        <p>This genre has no books.</p>
-                    <% } %>
-                </div>
-                <a href="<%- genre.url + '/delete' %>">Delete Genre</a>
+                    </div>
+                <% } else { %>
+                    <p>Do you really want to delete this genre?</p>
+                    <form action="" method="POST">
+                        <div class="form-group">
+                            <input type="hidden" name="genreid" value="<%- genre._id %>" id="genreid" class="form-control">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Delete</button>
+                    </form>
+                <% } %>
             </div>
         </div>
     </div>
