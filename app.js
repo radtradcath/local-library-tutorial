@@ -31,9 +31,8 @@ app.use(
 
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false);
-const dev_db_url = "mongodb+srv://radtrad:mongodb753951@cluster0.9oklfyh.mongodb.net/local_library?retryWrites=true&w=majority"
 
-const mongoDB = process.env.MONGODB_URI || dev_db_url
+const mongoDB = process.env.MONGODB_URI
 
 main().catch((err) => console.log(err))
 async function main() {
