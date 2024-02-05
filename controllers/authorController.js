@@ -1,4 +1,5 @@
 const Author = require("../models/author");
+const debug = require('debug')('author')
 const Book = require("../models/book");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
@@ -16,6 +17,7 @@ exports.author_detail = asyncHandler(async (req, res, next) => {
   ]);
 
   if (author === null) {
+    debug(`id not found: ${req.params.id}`)
     const err = new Error("Author not found");
     err.status = 404;
     return next(err);
